@@ -55,7 +55,12 @@ function updateAveragePrice() {
 //   let price = prompt("Enter the starting price of the freelancer:");
 //   // Push it to the freelancers array
 //   if (name && occupation && price) {
-//     freelancers.push(freelancer);
+//     freelancers.push({
+//       name: name,
+//       occupation: occupation,
+//       price: parseInt(price),
+//     });
+//     sum += parseInt(price);
 //     // Create a new table row with the freelancer data
 //     let newRow =
 //       "<tr><td>" +
