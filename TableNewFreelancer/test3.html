@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Freelancer Forum</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Freelancer Forum</h1>
+    <button onclick="addManualFreelancer()">Add Manual Freelancer</button>
+    <p>The average starting price is $47.25.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Occupation</th>
+          <th>Starting Price</th>
+        </tr>
+      </thead>
+      <tbody id="freelancer-list"></tbody>
+    </table>
+
+    <script type="text/javascript">
+      const freelancers = [
+        { name: "Dr. Slice", price: 25, occupation: "Gardener" },
+        { name: "Dr. Pressure", price: 51, occupation: "Programmer" },
+        { name: "Prof. Possibility", price: 43, occupation: "Teacher" },
+        { name: "Prof. Prism", price: 81, occupation: "Teacher" },
+        { name: "Dr. Impulse", price: 43, occupation: "Teacher" },
+        { name: "Prof. Spark", price: 76, occupation: "Programmer" },
+        { name: "Dr. Wire", price: 47, occupation: "Teacher" },
+        { name: "Prof. Goose", price: 72, occupation: "Driver" },
+      ];
+
+      let table = document.getElementById("freelancer-list");
+      let sum = 0;
+
+      for (let i = 0; i < freelancers.length; i++) {
+        let row = table.insertRow(-1);
+        let nameCell = row.insertCell(0);
+        let occupationCell = row.insertCell(1);
+        let priceCell = row.insertCell(2);
+        nameCell.innerHTML = freelancers[i].name;
+        occupationCell.innerHTML = freelancers[i].occupation;
+        priceCell.innerHTML = "$" + freelancers[i].price;
+        priceCell.className = "price";
+        sum += freelancers[i].price;
+      }
+
+      let avgPrice = sum / freelancers.length;
+      document.getElementsByTagName("p")[0].innerHTML =
+        "The average starting price is $" + avgPrice.toFixed(2);
+
+      function addManualFreelancer() {
+        let name = prompt("Enter the name of the freelancer:");
+        let occupation = prompt("Enter the occupation of the freelancer:");
+        let price = prompt("Enter the starting price of the freelancer:");
+        if (name && occupation && price) {
+          let row = table.insertRow(-1);
+          let nameCell = row.insertCell(0);
+          let occupationCell = row.insertCell(1);
+          let priceCell = row.insertCell(2);
+          nameCell.innerHTML = name;
+          occupationCell.innerHTML = occupation;
+          priceCell.innerHTML = "$" + price;
+          priceCell.className = "price";
+          sum += parseInt(price);
+          freelancers.push({
+            name: name,
+            occupation: occupation,
+            price: parseInt(price),
+          });
+          let avgPrice = sum / freelancers.length;
+          document.getElementsByTagName("p")[0].innerHTML =
+            "The average starting price is $" + avgPrice.toFixed(2);
+        } else {
+          alert("Please enter valid inputs.");
+        }
+      }
+    </script>
+  </body>
+</html>

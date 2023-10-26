@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>freelancer-list</title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body onload="updateAveragePrice()">
+    <main>
+      <h1>Freelancer Forum</h1>
+      <!-- <button onclick="addFreelancer()">Add Manual Freelancer</button> -->
+      <p class="center">
+        The average starting price is <span id="averagePrice"></span>.
+      </p>
+      <h2>Available Freelancers</h2>
+      <button onclick="sortFreelancers()" class="box">Sort by Price</button>
+      <table style="width: 50%" class="box">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Occupation</th>
+            <th>Starting Price</th>
+          </tr>
+        </thead>
+        <tbody id="freelancers"></tbody>
+      </table>
+    </main>
+  </body>
+</html>
