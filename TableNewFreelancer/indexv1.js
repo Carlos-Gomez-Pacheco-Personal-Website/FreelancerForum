@@ -10,15 +10,25 @@ const freelancers = [
   { name: "Prof. Goose", price: 72, occupation: "Driver" },
 ];
 function updateAveragePrice() {
+  let newFreelancers = "";
+  // for (let i = 0; i < 10; i++) {  // Adding 10 random freelancers
+  // for (let i = 0; i < 1; i++) {
+  // let price = Math.floor(Math.random() * 81) + 20;
   const randomIndex = Math.floor(Math.random() * freelancers.length);
+  newFreelancers +=
+    "<tr><td>" +
+    // name[Math.floor(Math.random() * name.length)] +
+    freelancers[randomIndex].name +
+    "</td><td>" +
+    // occupation[Math.floor(Math.random() * occupation.length)] +
+    freelancers[randomIndex].occupation +
+    "</td><td>$" +
+    // price +
+    freelancers[randomIndex].price +
+    "</td></tr>";
+  // }
 
-  addRow(
-    freelancers[randomIndex].name,
-    freelancers[randomIndex].occupation,
-    freelancers[randomIndex].price
-  );
-
-  // document.querySelector("#freelancers").innerHTML += newFreelancers;
+  document.querySelector("#freelancers").innerHTML += newFreelancers;
 
   // Prices Selector for Average from random Price from "prices of the array freelancers"
   const prices = document.querySelectorAll("#freelancers td:nth-child(3)");
@@ -29,6 +39,10 @@ function updateAveragePrice() {
   let average = total / prices.length;
   document.querySelector("#averagePrice").textContent =
     "$" + average.toFixed(2);
+
+  // Add a 10 by 10 random freelancer from the array
+  //   document.querySelector("#freelancers").innerHTML = newFreelancers;
+  //   setTimeout(updateAveragePrice, 6000);
 }
 
 // Add new freelancers every 6 sec
@@ -42,23 +56,28 @@ function addFreelancer() {
   let price = prompt("Enter the starting price of the freelancer:");
   // Push it to the freelancers array
   if (name && occupation && price) {
-    addRow(name, occupation, price);
+    // OJO
+    // esto no se si hace falta porq si lo meter al array se volverá a mostrar cuando se llame updateAveragePrice
+    // freelancers.push({
+    //   name,
+    //   occupation,
+    //   price: parseInt(price),
+    // });
+    // sum += parseInt(price);
+    // Create a new table row with the freelancer data
+    let newRow =
+      "<tr><td>" +
+      name +
+      "</td><td>" +
+      occupation +
+      "</td><td>$" +
+      price +
+      "</td></tr>";
+    // Append it to the freelancers table
+    document.querySelector("#freelancers").innerHTML += newRow;
   } else {
     alert("Please enter valid inputs.");
   }
-}
-
-function addRow(name, occupation, price) {
-  let newRow =
-    "<tr><td>" +
-    name +
-    "</td><td>" +
-    occupation +
-    "</td><td>$" +
-    price +
-    "</td></tr>";
-  // Append it to the freelancers table
-  document.querySelector("#freelancers").innerHTML += newRow;
 }
 
 // Sort from lower to higher
